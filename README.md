@@ -1,10 +1,10 @@
 # Homework 4
 
-Statistical Genomics
+**Statistical Genomics**
 
-CROPS 545, Spring 2020
+**CROPS 545, Spring 2020**
 
-Professor: Zhiwu Zhang
+**Professor: Zhiwu Zhang**
 
 
 Due on March 30, 2020, Monday, 3:10PM, PST
@@ -41,6 +41,6 @@ Demonstrate that your method is superior to the competing method (GWASbyCor) thr
 
 
 
-Extra credit
+**Extra credit**
 
 Demonstrate that your package is better than BLINK C version () on either statistical power or speed (25 points). 
