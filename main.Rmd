@@ -1,0 +1,63 @@
+---
+title: "main.r"
+author: "JohnHadish"
+date: "3/8/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Testing The Program:
+Each Function should have its own demonstration script: 
+
+Download Data:
+```{r}
+myGenotype=read.table(file="http://zzlab.net/GAPIT/data/mdp_numeric.txt",head=T)
+myPosition=read.table(file="http://zzlab.net/GAPIT/data/mdp_SNP_information.txt",head=T)
+myPhenotype=read.table(file="http://zzlab.net/GAPIT/data/CROP545_Phenotype.txt",head=T)
+myCovariate=read.table(file="http://zzlab.net/GAPIT/data/CROP545_Covariates.txt",head=T)
+```
+
+
+Description: 
+returns: P: a vector n long of p values for every gene in n
+Dependent: Generate_PCA, Scree, Determine_Linear_Dependent
+```{r, Run_GLM}
+Run_GLM(X, y, C)
+```
+
+returns: principle components after skree analysis
+```{r, Determine_PC_Number}
+Determine_PC_Number(X, )
+```
+
+
+returns: unknown
+```{r, Determine_linear_dependent}
+
+Determine_Linear_Dependent(PC, C)
+```
+
+
+
+Returns: a QQ plot of observed and expected p values
+```{r, Plot_QQ}
+Plot_QQ(P)
+```
+
+Returnes: Manhatten plot
+```{r, Plot_ Manhatten}
+Plot_Manhatten(I, P)
+```
+
+P_Threshold
+returns: how many true positives are above the first false positive
+```{r}
+```
+
+
+
+
+
