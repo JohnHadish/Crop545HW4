@@ -29,12 +29,14 @@ Dependent: Generate_PCA, Scree, Determine_Linear_Dependent
 Run_GLM(X, y, C)
 ```
 
-returns: principle components after scree analysis
+returns: principal components after scree analysis
 ```{r, Determine_PC_Number}
 library(plotly)
 library(ggplot2)
 library(gridExtra)
 library(knitr)
+pcacomp=function(genotypes)
+{                
 genotypes <- data.frame(read.table(file="http://zzlab.net/GAPIT/data/mdp_numeric.txt", header = T, row.names = 1, colClasses = classes, stringsAsFactors = F, sep = "\t"))
 markermap <- read.table(file="http://zzlab.net/GAPIT/data/mdp_SNP_information.txt", header = T, stringsAsFactors = F, sep = "\t")
 pca1=prcomp(genotypes[,-1])
@@ -83,6 +85,10 @@ htmlwidgets::saveWidget(as_widget(fig), "PCA_3d.html")
 pcano=min(which((var_exp_plot_data$var_exp<0.014)))
 kable(round(summary$importance[,1:pcano], 2))
 pcasum=data.frame(princomp[,1:pcano],myCovariate)
+return(pcasum)
+}
+pcacomp(genotypes = genotypes)
+
 ```
 
 
