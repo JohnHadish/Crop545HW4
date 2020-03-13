@@ -38,33 +38,17 @@ library(knitr)
 
 allPC=prcomp(myGenotype[,-1])
 
-pcThreshold <- function(PC, threshold = 0.014)
-{                
-summaryPCA=summary(PC)
 
-pcano=min(which(summary$importance[2,] < threshold))
-
-pcasum=PC$x[,1:pcano]
-return(pcasum)
-}
 
 threshPC <- pcThreshold(allPC)
 
 
-#'
-#' pcCoVariance
-#'
-#' Determines is covariance between vovariates and principle components
-#'
-#' @param PC (n x p) p Principle components for n samples
-#' @param C  (n x c) c Covariates for n samples
-#'
-pcCoVariance <- function(PC, C)
-{
-  
-  
-  return(pcANDc)
-}
+
+
+a<-pcCoVariance(PC, myCovariate, .7)
+
+
+
 
 
 graphPCA <- function(myGenotype, PC)
