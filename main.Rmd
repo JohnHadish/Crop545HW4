@@ -29,14 +29,12 @@ Dependent: Generate_PCA, Scree, Determine_Linear_Dependent
 Run_GLM(X, y, C)
 ```
 
-returns: principle components after skree analysis
+returns: principle components after scree analysis
 ```{r, Determine_PC_Number}
 library(plotly)
 library(ggplot2)
 library(gridExtra)
 library(knitr)
-#gt_scan <- data.frame(read.table(file="http://zzlab.net/GAPIT/data/mdp_numeric.txt", header = T, stringsAsFactors = F, sep = "\t", nrows = 1))
-#classes <- sapply(gt_scan, class)
 genotypes <- data.frame(read.table(file="http://zzlab.net/GAPIT/data/mdp_numeric.txt", header = T, row.names = 1, colClasses = classes, stringsAsFactors = F, sep = "\t"))
 markermap <- read.table(file="http://zzlab.net/GAPIT/data/mdp_SNP_information.txt", header = T, stringsAsFactors = F, sep = "\t")
 pca1=prcomp(genotypes[,-1])
@@ -46,7 +44,6 @@ summary=summary(pca1)
 princomp=pca1$x
 kable(round(summary$importance[,1:8], 2))
 screeplot(pca1, npcs = 8, type = "lines")
-which
 var_exp_plot_data <- data.frame(t(summary$importance))
 names(var_exp_plot_data) <- c("sdev", "var_exp", "cum_var_exp") 
 var_exp_plot_data$pca_index <- 1:nrow(var_exp_plot_data) 
@@ -76,14 +73,6 @@ pca_comp_plot_23 <-
   geom_point()
 
 grid.arrange(pca_comp_plot_12, pca_comp_plot_13, pca_comp_plot_23, nrow = 2, ncol = 2, top = "GAPIT Demo GT: Principal Components")
-```
-
-
-
-### 3-D Scatter plots
-
-```{r plot_pca_comp_3d}
-
 fig <- plot_ly(data = pca_comp_plot_data, x = ~PC1, y = ~PC2, z = ~PC3)
 fig <- fig %>% add_markers()
 fig <- fig %>% layout(scene = list(xaxis = list(title = 'PC1'),
@@ -91,7 +80,9 @@ fig <- fig %>% layout(scene = list(xaxis = list(title = 'PC1'),
                      zaxis = list(title = 'PC3')))
 
 htmlwidgets::saveWidget(as_widget(fig), "PCA_3d.html")
-
+pcano=min(which((var_exp_plot_data$var_exp<0.014)))
+kable(round(summary$importance[,1:pcano], 2))
+pcasum=data.frame(princomp[,1:pcano],myCovariate)
 ```
 
 
