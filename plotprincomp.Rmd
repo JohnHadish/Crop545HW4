@@ -13,7 +13,7 @@ graphPCA <- function(allPC)
   var_exp_plot_data <- data.frame(t(summaryPCA$importance))
   names(var_exp_plot_data) <- c("sdev", "var_exp", "cum_var_exp") 
   var_exp_plot_data$pca_index <- 1:nrow(var_exp_plot_data) 
-  var_exp_plot <- ggplot(data = var_exp_plot_data, aes(x = pca_index, y = var_exp)) +
+  var_exp_plot <- ggplot(data = var_exp_plot_data, aes(x = pca_index,y = var_exp)) +
     geom_line() +
     geom_point() +
     labs(x = "PCA component index", y = "Variance explained", title = "GAPIT Demo GT: Variance Explained")
