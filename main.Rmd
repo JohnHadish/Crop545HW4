@@ -22,6 +22,7 @@ myCovariate=read.table(file="http://zzlab.net/GAPIT/data/CROP545_Covariates.txt"
 
 
 
+
 Description: 
 returns: P: a vector n long of p values for every gene in n
 Dependent: Generate_PCA, Scree, Determine_Linear_Dependent
