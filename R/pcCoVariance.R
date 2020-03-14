@@ -15,5 +15,8 @@ pcCoVariance <- function(PC, C, threshold)
   print(which(highCor))
   print("Due to high linear dependencies with users covariates")
 
-  return(corMatrix[!highCor,])
+  df <- as.matrix(data.frame(PC[,!highCor], C[,-1]))
+
+  return(df)
 }
+

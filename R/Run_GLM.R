@@ -10,14 +10,9 @@
 #'
 #' @return P A P-value vector (n) representing importance of each gene
 #' @example
-Run_GLM <- function(X, Y, C)
+Run_GLM <- function(myGD, y, PC)
 {
-
-  # Perform PCA, Determine which are relevant
-
-
-  # Add relevant PCA (PC) and Covariates (C) to Model
-  G=X[,-1]
+  G=myGD[,-1]
   n=nrow(G)
   m=ncol(G)
   P=matrix(NA,1,m)
@@ -25,7 +20,7 @@ Run_GLM <- function(X, Y, C)
     x=G[,i]
     if(max(x)==min(x)){
       p=1}else{
-        X=cbind(1, PC$x[,1:3],x)
+        X=cbind(1, PC[,1:3],x)
         LHS=t(X)%*%X
         C=solve(LHS)
         RHS=t(X)%*%y
@@ -41,6 +36,4 @@ Run_GLM <- function(X, Y, C)
     P[i]=p[length(p)]
   } #end of looping for markers
 
-  # Return P
-  return(P)
 }
