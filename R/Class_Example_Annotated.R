@@ -89,6 +89,9 @@ for (i in 1:m){ # For each gene, calculate new
   if(max(x)==min(x)){
     p=1}else{
       X=cbind(1, PCA$x[,2],x)
+
+      typeof(X)
+      typeof(t(X))
       LHS=t(X)%*%X
       C=solve(LHS)
       RHS=t(X)%*%y
