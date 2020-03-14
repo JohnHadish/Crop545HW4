@@ -1,3 +1,4 @@
+
 ---
 title: "main.r"
 author: "JohnHadish"
@@ -128,8 +129,4 @@ P_Threshold
 returns: how many true positives are above the first false positive
 ```{r}
 ```
-
-
-
-
 
