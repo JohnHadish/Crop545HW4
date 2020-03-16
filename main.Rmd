@@ -31,6 +31,8 @@ library(knitr)
 # NOT WORKING YET, CANNOT FIND NAME SPACES FROM REMOTE INSTALL
 library(devtools)
 install_github("JohnHadish/Crop545HW4")
+
+
 library(Crop545HW4)
 ```
 
