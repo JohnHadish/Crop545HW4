@@ -5,9 +5,9 @@
 #'
 #' @param X A Genotype Matrix (n x m)
 #' @param h2
-#' @param alpha A Phenotype Matrix (n x 1)
-#' @param NQTN A Phenotype Matrix (n x 1)
-#' @param distrubution A P-value vector (n) representing importance of each gene
+#' @param alpha
+#' @param NQTN
+#' @param distrubution
 #' @return
 #' @export
 G2P=function(X,h2,alpha,NQTN,distribution)

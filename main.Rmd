@@ -45,10 +45,9 @@ threshPC <- pcThreshold(allPC)
 # pcCovariance  determines if covariates are linear with principle components
 finalPC <- pcCoVariance(threshPC, myCovariate, .7)
 
-P <- Run_GLM(myGenotype, myPhenotype[,2], finalPC)
+P <- GWASbyGLM(myGenotype, myPhenotype[,2], finalPC)
 
-covariates <- as.matrix(myCovariate[,-1])
-P3 <- Run_GLM(myGenotype, myPhenotype[,-1] , covariates)
+
 
 P2 <- GWASbyCor(myGenotype[,-1], myPhenotype[,-1])
 
@@ -60,7 +59,7 @@ plotManhatten(P)
 plotManhatten(P2)
 plotManhatten(P3)
 ```
-
+ 
 
 Returns: a QQ plot of observed and expected p values
 ```{r, Plot_QQ}
@@ -70,9 +69,96 @@ plotQQ(P2)
 plotQQ(P3)
 ```
 
-GWAS Simulation
+30 GWAS Simulations
 ```{r}
+# These only need to be calculated 1 time since they only pertain to structure of Genotype
+allPC <- prcomp(myGenotype[,-1])
+threshPC <- pcThreshold(allPC)
+finalPC <- pcCoVariance(threshPC, myCovariate, .7)
+
+#Create BLINK input data
+GD=t(myGenotype[,-1])
+write.table(GD,file="myData.dat",quote=F,sep="\t",col.name=F,row.name=F)
+write.table(myPosition,file="myData.map",quote=F,sep="\t",col.name=T,row.name=F)
+
+scoresTop10 = matrix(NA,3,30)
+time30 = matrix(NA,3,30)
+
+total <- 30
+# create progress bar
+pb <- txtProgressBar(min = 0, max = total, style = 3)
+for(i in 1:30)
+{
+  simP <- G2P(myGenotype[,-1],0.75,alpha=1,NQTN=10,distribution = "norm")
 
 
+  ### Run Correlation GWAS###
+  simCor_Time_Start <- proc.time()
+  simCor <- GWASbyCor(myGenotype[,-1], simP$y)
+  simCor_Time_End <- proc.time()
+  
+  ### Run GLM GWAS###
+  simGLM_Time_Start <- proc.time()
+  simGLM <- GWASbyGLM(myGenotype, simP$y, finalPC )
+  simGLM_Time_End <- proc.time()
+  
+  ### Run BLINK GWAS####
+  simBLINK_Time_Start <- proc.time()
+    # write this phenotype for BLINK to use:
+  P_BLINK <- data.frame(myPhenotype[,1], simP$y)
+  names(P_BLINK)[1] <- "Taxa"
+  names(P_BLINK)[2] <- "Obs"
+  write.table(P_BLINK, file="myData.txt",quote=F,sep="\t",col.name=T,row.name=F)
+  # # Blink rewrites files, so I have to recreate them every time if I wantit to run
+  write.table(GD,file="myData.dat",quote=F,sep="\t",col.name=F,row.name=F)
+  write.table(myPosition,file="myData.map",quote=F,sep="\t",col.name=T,row.name=F)
+  # Run Blink on the command line, read in results
+  system("/home/john/Documents/ZZClass/BLINK/blink_linux --gwas --file myData --numeric", wait = TRUE, ignore.stdout = TRUE, ignore.stderr = TRUE)
+  GMP <- read.delim("Obs_GWAS_result.txt", head = T)
+  simBLINK <- t(as.matrix(GMP[,5]))
+  simBLINK_Time_End <- proc.time()
+  
+  time30[2,i] = simCor_Time_End[3] - simCor_Time_Start[3]
+  time30[1,i] = simGLM_Time_End[3] -simGLM_Time_Start[3] 
+  time30[3,i] = simBLINK_Time_End[3] - simBLINK_Time_Start[3]
+  
+  scoresTop10[2,i] = detectTop10(simCor, simP$QTN.position)
+  scoresTop10[1,i] = detectTop10(simGLM,simP$QTN.position)
+  scoresTop10[3,i] = detectTop10(simBLINK, simP$QTN.position)
 
+  setTxtProgressBar(pb, i)
+}
+close(pb)
+
+print(paste("Average of GWAS by Cor average: ", mean(scoresTop10[2,]), "SD: ", sd(scoresTop10[2,]), "Time: ", mean(time30[2,])))
+print(paste("Average of GWAS by GLM average: ", mean(scoresTop10[1,]), "SD: ", sd(scoresTop10[1,]), "Time: ", mean(time30[1,])))
+print(paste("Average of GWAS by BLINK average: ", mean(scoresTop10[3,]), "SD: ", sd(scoresTop10[3,]), "Time: ", mean(time30[3,])))
 ```
+
+Running Blink
+```{r}
+system("wget http://zzlab.net/GAPIT/data/CROP545_Phenotype.txt")
+system("mv CROP545_Phenotype.txt Data")
+system("wget http://zzlab.net/GAPIT/data/mdp_numeric.txt")
+myCovariate=read.table(file="http://zzlab.net/GAPIT/data/CROP545_Covariates.txt",head=T)
+
+system("/home/john/Documents/ZZClass/BLINK/blink_linux --gwas --file --numeric ")
+
+# myGenotype=read.table(file="http://zzlab.net/GAPIT/data/mdp_numeric.txt",head=T)
+# myPosition=read.table(file="http://zzlab.net/GAPIT/data/mdp_SNP_information.txt",head=T)
+# myPhenotype=read.table(file="http://zzlab.net/GAPIT/data/CROP545_Phenotype.txt",head=T)
+# myCovariate=read.table(file="http://zzlab.net/GAPIT/data/CROP545_Covariates.txt",head=T)
+
+#Create BLINK input data
+GD=t(myGenotype[,-1])
+write.table(GD,file="myData.dat",quote=F,sep="\t",col.name=F,row.name=F)
+write.table(myPosition,file="myData.map",quote=F,sep="\t",col.name=T,row.name=F)
+write.table(data.frame(myPhenotype[,1], simP$y),file="myData.txt",quote=F,sep="\t",col.name=T,row.name=F)
+#Run BLINK
+system("/home/john/Documents/ZZClass/BLINK/blink_linux --gwas --file myData --numeric")
+
+GMP <- read.delim("Obs_GWAS_result.txt", head = T)
+results <- t(as.matrix(GMP[,5]))
+plotManhatten(results)
+```
+
