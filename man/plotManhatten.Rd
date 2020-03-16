@@ -4,10 +4,12 @@
 \alias{plotManhatten}
 \title{Plot Manhatten}
 \usage{
-plotManhatten(P)
+plotManhatten(P, main)
 }
 \arguments{
 \item{P}{A P-value vector (n) representing importance of each gene}
+
+\item{main}{Name of plot}
 }
 \description{
 Plots manhatten plot of P values

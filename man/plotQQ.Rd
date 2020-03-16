@@ -4,10 +4,12 @@
 \alias{plotQQ}
 \title{Plot QQ}
 \usage{
-plotQQ(P)
+plotQQ(P, main)
 }
 \arguments{
 \item{P}{A P-value vector (n) representing importance of each gene}
+
+\item{main}{Name of plot}
 }
 \description{
 Plots Q plot of P-value vector

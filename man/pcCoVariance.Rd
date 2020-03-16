@@ -2,19 +2,24 @@
 % Please edit documentation in R/pcCoVariance.R
 \name{pcCoVariance}
 \alias{pcCoVariance}
-\title{pcCoVariance}
+\title{Choosing and removing dependent PC's}
 \usage{
 pcCoVariance(PC, C, threshold)
 }
 \arguments{
-\item{PC}{(n x p) p Principle components for n samples}
+\item{PC}{matrix(n x p): p Principle components for n samples}
 
-\item{C}{(n x c) c Covariates for n samples}
+\item{C}{matrix(n x c):c Covariates for n samples}
+
+\item{threshold}{numeric: the value above which one determines the variables to have high corelation}
 }
 \value{
-PC_C (n x (p + c - linear dependent)) Principle Components and Covariates which are independent
+PC_C matrix(n x (p + c - linear dependent)):Principle Components and Covariates which are not dependent
 }
 \description{
-Determines principle components (PC) that are in linear dependent to the covariates (C).
-Removes PC that are linear dependent
+`pcCoVariance()` Determines principle components (PC) that are in linear dependendence to the
+covariates (C).Also,removes PC's that are in linear dependence with the covariates
+}
+\details{
+Determines the principle components (PC) that are not in linear dependendence to the covariates (C).
 }

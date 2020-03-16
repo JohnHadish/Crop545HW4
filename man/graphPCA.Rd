@@ -2,13 +2,21 @@
 % Please edit documentation in R/2dpcplots.R
 \name{graphPCA}
 \alias{graphPCA}
-\title{graphPCA}
+\title{PCA plots}
 \usage{
 graphPCA(allPC)
 }
+\arguments{
+\item{allPC}{matrix:the PC matrix provided by "prcomp".}
+}
 \value{
-
+plots:Scree plot,Proportion of variance explained plot,Cumulative proportion.
+of variance explained plot and 2D plots.
 }
 \description{
-Plots the Scree/Elbow plot,the Proprtion of the variance explained by the PC's and the Cumulative Proportion of the variance explained by the PC's
+`graphPCA` Plots the necessary graphs to determine the required number of PC's for the dataset.
+}
+\details{
+Plots the Scree/Elbow plot,the Proprtion of the variance explained by the PC's and the Cumulative
+Proportion of the variance explained by the PC's.
 }

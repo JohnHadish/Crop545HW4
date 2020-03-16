@@ -2,13 +2,16 @@
 % Please edit documentation in R/2dpcplots.R
 \name{pca3D}
 \alias{pca3D}
-\title{pca3D}
+\title{PCA 3D plots}
 \usage{
 pca3D(pca_comp_plot_data)
 }
+\arguments{
+\item{pca_comp_plot_data}{data_frame:contains all the principal components provided by "prcomp"}
+}
 \value{
-
+PCA3D.html:A html file containg the 3D plots.
 }
 \description{
-pca3D
+`pca3D` Plots the 3D graphs for PC's of a dataset.
 }

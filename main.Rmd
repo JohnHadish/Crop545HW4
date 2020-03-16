@@ -21,6 +21,7 @@ myPhenotype=read.table(file="http://zzlab.net/GAPIT/data/CROP545_Phenotype.txt",
 myCovariate=read.table(file="http://zzlab.net/GAPIT/data/CROP545_Covariates.txt",head=T)
 ```
 
+Load Dependencies
 ```{r}
 library(plotly)
 library(ggplot2)
@@ -33,40 +34,32 @@ install_github("JohnHadish/Crop545HW4")
 library(Crop545HW4)
 ```
 
-Description: 
-returns: P: a vector n long of p values for every gene in n
-Dependent: Generate_PCA, Scree, Determine_Linear_Dependent
+Run GWAS using GLM and Correlation on the provided data:
 ```{r, Run_GLM}
 # prcomp is a default principle component analysis
 allPC <- prcomp(myGenotype[,-1])
 # pcThreshold removes all princople components that account for less than threshold
 threshPC <- pcThreshold(allPC)
-
 # pcCovariance  determines if covariates are linear with principle components
 finalPC <- pcCoVariance(threshPC, myCovariate, .7)
-
 P <- GWASbyGLM(myGenotype, myPhenotype[,2], finalPC)
 
-
-
+# GWAS by Correlation
 P2 <- GWASbyCor(myGenotype[,-1], myPhenotype[,-1])
-
 ```
 
-
+# Manhatten Plots of GWAS by GLM and Cor
 ```{r}
-plotManhatten(P)
-plotManhatten(P2)
-plotManhatten(P3)
+plotManhatten(P, main = "GWAS by GLM")
+plotManhatten(P2, main = "GWAS by Cor")
 ```
  
 
 Returns: a QQ plot of observed and expected p values
 ```{r, Plot_QQ}
 par(mfrow=c(1,2))
-plotQQ(P)
-plotQQ(P2)
-plotQQ(P3)
+plotQQ(P, main = "GWAS by GLM")
+plotQQ(P2, main = "GWAS by Cor")
 ```
 
 30 GWAS Simulations

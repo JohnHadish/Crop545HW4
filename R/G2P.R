@@ -4,11 +4,11 @@
 #' Taken from Lecture, using for simulation.
 #'
 #' @param X A Genotype Matrix (n x m)
-#' @param h2
-#' @param alpha
-#' @param NQTN
-#' @param distrubution
-#' @return
+#' @param h2 Heritability
+#' @param alpha affect of the qtns
+#' @param NQTN Number of QTNS to be simulated
+#' @param distrubution which distribution to use, only "norm" is available
+#' @return simulated phenotype list
 #' @export
 G2P=function(X,h2,alpha,NQTN,distribution)
 {
