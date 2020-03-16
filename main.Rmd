@@ -47,6 +47,9 @@ finalPC <- pcCoVariance(threshPC, myCovariate, .7)
 
 P <- Run_GLM(myGenotype, myPhenotype[,2], finalPC)
 
+covariates <- as.matrix(myCovariate[,-1])
+P3 <- Run_GLM(myGenotype, myPhenotype[,-1] , covariates)
+
 P2 <- GWASbyCor(myGenotype[,-1], myPhenotype[,-1])
 
 ```
@@ -55,6 +58,7 @@ P2 <- GWASbyCor(myGenotype[,-1], myPhenotype[,-1])
 ```{r}
 plotManhatten(P)
 plotManhatten(P2)
+plotManhatten(P3)
 ```
 
 
@@ -63,4 +67,12 @@ Returns: a QQ plot of observed and expected p values
 par(mfrow=c(1,2))
 plotQQ(P)
 plotQQ(P2)
+plotQQ(P3)
+```
+
+GWAS Simulation
+```{r}
+
+
+
 ```

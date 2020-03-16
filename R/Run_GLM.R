@@ -13,11 +13,12 @@ Run_GLM <- function(myGD, y, PC)
   n=nrow(G)
   m=ncol(G)
   P=matrix(NA,1,m)
+  PC_Col = ncol(PC)
   for (i in 1:m){
     x=G[,i]
     if(max(x)==min(x)){
       p=1}else{
-        X=cbind(1, PC[,1:3],x)
+        X=cbind(1, PC[,1:PC_Col],x)
         LHS=t(X)%*%X
         C=solve(LHS)
         RHS=t(X)%*%y
