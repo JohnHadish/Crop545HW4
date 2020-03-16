@@ -1,3 +1,8 @@
+
+![alt text](DJPackageImage.png)
+
+
+
 # Homework 4
 
 **Statistical Genomics**  
