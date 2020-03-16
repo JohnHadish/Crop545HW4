@@ -6,7 +6,7 @@
 #' @param threshold the amount a principle component must explain to be kept in the model
 #'
 #' @return PC_T
-#' @example
+#' @export
 pcThreshold <- function(PC, threshold = 0.014)
 {
   summaryPCA = summary(PC)

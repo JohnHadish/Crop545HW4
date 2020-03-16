@@ -7,7 +7,7 @@
 #' @param
 #'
 #' @return
-#' @example
+#' @export
 graphPCA <- function(allPC)
 {
   # Plotting var_exp_plot
@@ -51,7 +51,7 @@ graphPCA <- function(allPC)
 #' @param
 #'
 #' @return
-#' @example
+#' @export
 pca3D=function(pca_comp_plot_data)
 {
   fig <- plot_ly(data = pca_comp_plot_data, x = ~PC1, y = ~PC2, z = ~PC3)

@@ -6,7 +6,7 @@
 #' @param Y A Phenotype Matrix (n x 1)
 #'
 #' @return P A P-value vector (n) representing importance of each gene
-#' @example
+#' @export
 GWASbyCor=function(X,Y)
 {
   n=nrow(X)

@@ -7,7 +7,7 @@
 #' @param PC (n x p) p Principle components for n samples
 #' @param C  (n x c) c Covariates for n samples
 #' @return PC_C (n x (p + c - linear dependent)) Principle Components and Covariates which are independent
-#'
+#' @export
 pcCoVariance <- function(PC, C, threshold)
 {
   corMatrix <- cor(PC, myCovariate[,-1])

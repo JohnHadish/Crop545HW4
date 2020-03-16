@@ -4,7 +4,7 @@
 #'
 #' @param P A P-value vector (n) representing importance of each gene
 #'
-#' @example
+#' @export
 plotQQ <- function(P)
 {
   p.obs=P

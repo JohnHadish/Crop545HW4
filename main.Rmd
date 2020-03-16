@@ -26,6 +26,10 @@ library(plotly)
 library(ggplot2)
 library(gridExtra)
 library(knitr)
+
+library(devtools)
+# install_github("JohnHadish/Crop545HW4")
+library(Crop545HW4)
 ```
 
 Description: 

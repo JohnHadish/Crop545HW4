@@ -7,7 +7,7 @@
 #' @param C A Covariate Matrix (n x c)
 #'
 #' @return P A P-value vector (n) representing importance of each gene
-#' @example
+#' @export
 Run_GLM <- function(myGD, y, PC)
 {
   G=myGD[,-1]

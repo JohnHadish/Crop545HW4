@@ -4,7 +4,7 @@
 #'
 #' @param P A P-value vector (n) representing importance of each gene
 #'
-#' @example
+#' @export
 plotManhatten <- function(P)
 {
   color.vector <- rep(c("deepskyblue","orange","forestgreen","indianred3"),10)
