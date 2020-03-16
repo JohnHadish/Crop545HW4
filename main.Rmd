@@ -38,14 +38,15 @@ allPC <- prcomp(myGenotype[,-1])
 # pcThreshold removes all princople components that account for less than threshold
 threshPC <- pcThreshold(allPC)
 
-
-
-
-
 # pcCovariance  determines if covariates are linear with principle components
 finalPC <- pcCoVariance(threshPC, myCovariate, .7)
 
-Run_GLM(myGenotype, myPhenotype[,2], finalPC)
+P <- Run_GLM(myGenotype, myPhenotype[,2], finalPC)
+
+
+color.vector <- rep(c("deepskyblue","orange","forestgreen","indianred3"),10)
+m=nrow(myPosition)
+plot(t(-log10(P))~seq(1:m),col=color.vector[myPosition[,2]])
 ```
 
 returns: principal components after scree analysis

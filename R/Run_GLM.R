@@ -1,8 +1,6 @@
 #' Run_GLM
 #'
 #' Performs GLM on a Genotype, Phenotype and Covariate Matrix.
-#' Automatically determines the required number of principle components to add.
-#' Removes principle components that are linear with covariates.
 #'
 #' @param X A Genotype Matrix (n x m)
 #' @param Y A Phenotype Matrix (n x 1)
@@ -35,5 +33,5 @@ Run_GLM <- function(myGD, y, PC)
       } #end of testing variation
     P[i]=p[length(p)]
   } #end of looping for markers
-
+return(P)
 }
