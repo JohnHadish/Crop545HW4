@@ -2,10 +2,6 @@
 #'
 #' Plots the Scree/Elbow plot,the Proprtion of the variance explained by the PC's and the Cumulative Proportion of the variance explained by the PC's
 #'
-#' @param
-#' @param
-#' @param
-#'
 #' @return
 #' @export
 graphPCA <- function(allPC)
@@ -46,9 +42,6 @@ graphPCA <- function(allPC)
 #'
 #'
 #'
-#' @param
-#' @param
-#' @param
 #'
 #' @return
 #' @export

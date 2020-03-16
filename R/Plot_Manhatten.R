@@ -3,7 +3,6 @@
 #' Plots manhatten plot of P values
 #'
 #' @param P A P-value vector (n) representing importance of each gene
-#'
 #' @export
 plotManhatten <- function(P)
 {

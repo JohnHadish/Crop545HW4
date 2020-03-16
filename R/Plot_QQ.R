@@ -3,7 +3,6 @@
 #' Plots Q plot of P-value vector
 #'
 #' @param P A P-value vector (n) representing importance of each gene
-#'
 #' @export
 plotQQ <- function(P)
 {

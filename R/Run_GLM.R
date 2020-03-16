@@ -5,7 +5,6 @@
 #' @param X A Genotype Matrix (n x m)
 #' @param Y A Phenotype Matrix (n x 1)
 #' @param C A Covariate Matrix (n x c)
-#'
 #' @return P A P-value vector (n) representing importance of each gene
 #' @export
 Run_GLM <- function(myGD, y, PC)

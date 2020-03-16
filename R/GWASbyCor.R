@@ -4,7 +4,6 @@
 #'
 #' @param X A Genotype Matrix (n x m)
 #' @param Y A Phenotype Matrix (n x 1)
-#'
 #' @return P A P-value vector (n) representing importance of each gene
 #' @export
 GWASbyCor=function(X,Y)
