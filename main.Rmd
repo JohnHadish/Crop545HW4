@@ -42,38 +42,20 @@ finalPC <- pcCoVariance(threshPC, myCovariate, .7)
 
 P <- Run_GLM(myGenotype, myPhenotype[,2], finalPC)
 
-
-color.vector <- rep(c("deepskyblue","orange","forestgreen","indianred3"),10)
-m=nrow(myPosition)
-plot(t(-log10(P))~seq(1:m),col=color.vector[myPosition[,2]])
-```
-
-```{r, Determine_PC_Number}
-
+P2 <- GWASbyCor(myGenotype[,-1], myPhenotype[,-1])
 
 ```
 
 
-returns: unknown
-```{r, Determine_linear_dependent}
-
-Determine_Linear_Dependent(PC, C)
+```{r}
+plotManhatten(P)
+plotManhatten(P2)
 ```
-
 
 
 Returns: a QQ plot of observed and expected p values
 ```{r, Plot_QQ}
-Plot_QQ(P)
+par(mfrow=c(1,2))
+plotQQ(P)
+plotQQ(P2)
 ```
-
-Returnes: Manhatten plot
-```{r, Plot_ Manhatten}
-Plot_Manhatten(I, P)
-```
-
-P_Threshold
-returns: how many true positives are above the first false positive
-```{r}
-```
-
