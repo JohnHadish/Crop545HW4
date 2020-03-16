@@ -1,9 +1,10 @@
-#'PCA plots
+#' PCA plots
 #'
-#' @description `graphPCA` Plots the necessary graphs to determine the required number of PC's for the dataset.
+#' graphPCA Plots the necessary graphs to determine the required number of PC's for the dataset.
 #'
-#' @details Plots the Scree/Elbow plot,the Proprtion of the variance explained by the PC's and the Cumulative
+#' Plots the Scree/Elbow plot,the Proprtion of the variance explained by the PC's and the Cumulative
 #' Proportion of the variance explained by the PC's.
+#'
 #' @param allPC matrix:the PC matrix provided by "prcomp".
 #' @return plots:Scree plot,Proportion of variance explained plot,Cumulative proportion.
 #' of variance explained plot and 2D plots.
@@ -41,11 +42,10 @@ graphPCA <- function(allPC)
 }
 #' PCA 3D plots
 #'
-#' @description `pca3D` Plots the 3D graphs for PC's of a dataset.
+#' pca3D Plots the 3D graphs for PC's of a dataset.
 #'
 #' @param pca_comp_plot_data data_frame:contains all the principal components provided by "prcomp"
 #' @return PCA3D.html:A html file containg the 3D plots.
-#'
 #' @export
 pca3D=function(pca_comp_plot_data)
 {

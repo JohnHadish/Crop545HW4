@@ -17,7 +17,7 @@ pcCoVariance(PC, C, threshold)
 PC_C matrix(n x (p + c - linear dependent)):Principle Components and Covariates which are not dependent
 }
 \description{
-`pcCoVariance()` Determines principle components (PC) that are in linear dependendence to the
+pcCoVariance() Determines principle components (PC) that are in linear dependendence to the
 covariates (C).Also,removes PC's that are in linear dependence with the covariates
 }
 \details{

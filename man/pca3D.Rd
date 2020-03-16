@@ -13,5 +13,5 @@ pca3D(pca_comp_plot_data)
 PCA3D.html:A html file containg the 3D plots.
 }
 \description{
-`pca3D` Plots the 3D graphs for PC's of a dataset.
+pca3D Plots the 3D graphs for PC's of a dataset.
 }

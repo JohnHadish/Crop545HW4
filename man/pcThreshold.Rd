@@ -15,8 +15,6 @@ pcThreshold(PC, threshold = 0.014)
 PC_T matrix: The  chosen number of principal components agreeing with the threshold.
 }
 \description{
-`pcThreshold()` Determines principle components to use in model based on set threshold
-}
-\details{
 To determine/choose the Principal component Threshold
+pcThreshold() Determines principle components to use in model based on set threshold
 }
