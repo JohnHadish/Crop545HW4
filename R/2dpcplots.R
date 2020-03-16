@@ -1,8 +1,13 @@
-#library(plotly)
-#library(ggplot2)
-#library(gridExtra)
-#library(knitr)
-#Plots the Scree/Elbow plot,the Proprtion of the variance explained by the PC's and the Cumulative Proportion of the variance explained by the PC's
+#' graphPCA
+#'
+#' Plots the Scree/Elbow plot,the Proprtion of the variance explained by the PC's and the Cumulative Proportion of the variance explained by the PC's
+#'
+#' @param
+#' @param
+#' @param
+#'
+#' @return
+#' @example
 graphPCA <- function(allPC)
 {
   # Plotting var_exp_plot
@@ -34,6 +39,19 @@ graphPCA <- function(allPC)
   return(cum_var_exp_plot)
   return(grid.arrange(pca_comp_plot_12, pca_comp_plot_13, pca_comp_plot_23, nrow = 2, ncol = 2, top = "GAPIT Demo GT: Principal Components"))
 }
+
+
+
+#' pca3D
+#'
+#'
+#'
+#' @param
+#' @param
+#' @param
+#'
+#' @return
+#' @example
 pca3D=function(pca_comp_plot_data)
 {
   fig <- plot_ly(data = pca_comp_plot_data, x = ~PC1, y = ~PC2, z = ~PC3)
