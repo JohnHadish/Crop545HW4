@@ -31,8 +31,6 @@ library(knitr)
 # NOT WORKING YET, CANNOT FIND NAME SPACES FROM REMOTE INSTALL
 library(devtools)
 install_github("JohnHadish/Crop545HW4")
-
-
 library(Crop545HW4)
 ```
 
@@ -99,7 +97,7 @@ for(i in 1:30)
   
   ### Run BLINK GWAS####
   simBLINK_Time_Start <- proc.time()
-    # write this phenotype for BLINK to use:
+    # write this phenotype for BLINK to use:\
   P_BLINK <- data.frame(myPhenotype[,1], simP$y)
   names(P_BLINK)[1] <- "Taxa"
   names(P_BLINK)[2] <- "Obs"
@@ -130,30 +128,5 @@ print(paste("Average of GWAS by GLM average: ", mean(scoresTop10[1,]), "SD: ", s
 print(paste("Average of GWAS by BLINK average: ", mean(scoresTop10[3,]), "SD: ", sd(scoresTop10[3,]), "Time: ", mean(time30[3,])))
 ```
 
-Running Blink
-```{r}
-system("wget http://zzlab.net/GAPIT/data/CROP545_Phenotype.txt")
-system("mv CROP545_Phenotype.txt Data")
-system("wget http://zzlab.net/GAPIT/data/mdp_numeric.txt")
-myCovariate=read.table(file="http://zzlab.net/GAPIT/data/CROP545_Covariates.txt",head=T)
 
-system("/home/john/Documents/ZZClass/BLINK/blink_linux --gwas --file --numeric ")
-
-# myGenotype=read.table(file="http://zzlab.net/GAPIT/data/mdp_numeric.txt",head=T)
-# myPosition=read.table(file="http://zzlab.net/GAPIT/data/mdp_SNP_information.txt",head=T)
-# myPhenotype=read.table(file="http://zzlab.net/GAPIT/data/CROP545_Phenotype.txt",head=T)
-# myCovariate=read.table(file="http://zzlab.net/GAPIT/data/CROP545_Covariates.txt",head=T)
-
-#Create BLINK input data
-GD=t(myGenotype[,-1])
-write.table(GD,file="myData.dat",quote=F,sep="\t",col.name=F,row.name=F)
-write.table(myPosition,file="myData.map",quote=F,sep="\t",col.name=T,row.name=F)
-write.table(data.frame(myPhenotype[,1], simP$y),file="myData.txt",quote=F,sep="\t",col.name=T,row.name=F)
-#Run BLINK
-system("/home/john/Documents/ZZClass/BLINK/blink_linux --gwas --file myData --numeric")
-
-GMP <- read.delim("Obs_GWAS_result.txt", head = T)
-results <- t(as.matrix(GMP[,5]))
-plotManhatten(results)
-```
 
