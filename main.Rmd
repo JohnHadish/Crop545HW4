@@ -21,7 +21,7 @@ myPhenotype=read.table(file="http://zzlab.net/GAPIT/data/CROP545_Phenotype.txt",
 myCovariate=read.table(file="http://zzlab.net/GAPIT/data/CROP545_Covariates.txt",head=T)
 ```
 
-Load Dependencies
+Load Dependencies and Packages:
 ```{r, message = FALSE, warning = FALSE}
 library(plotly)
 library(ggplot2)
@@ -35,11 +35,11 @@ library(DJ.GLM.GWAS)
 
 Run GWAS using GLM and Correlation on the provided data:
 ```{r, Run_GLM}
-# prcomp is a default principle component analysis
+# prcomp is a default principal component analysis
 allPC <- prcomp(myGenotype[,-1])
-# pcThreshold removes all princople components that account for less than threshold
+# pcThreshold removes all princpal components that account for less than threshold
 threshPC <- pcThreshold(allPC)
-# pcCovariance  determines if covariates are linear with principle components
+# pcCovariance  determines if covariates are linear with principal components
 finalPC <- pcCoVariance(threshPC, myCovariate, .7)
 P <- GWASbyGLM(myGenotype, myPhenotype[,2], finalPC)
 
@@ -47,7 +47,7 @@ P <- GWASbyGLM(myGenotype, myPhenotype[,2], finalPC)
 P2 <- GWASbyCor(myGenotype[,-1], myPhenotype[,-1])
 ```
 
-# Manhatten Plots of GWAS by GLM and Cor
+# Manhattan Plots of GWAS by GLM and Cor
 ```{r}
 plotManhatten(P, main = "GWAS by GLM")
 plotManhatten(P2, main = "GWAS by Cor")
