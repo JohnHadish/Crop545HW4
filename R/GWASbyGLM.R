@@ -35,4 +35,3 @@ GWASbyGLM <- function(X, y, C)
   } #end of looping for markers
 return(P)
 }
-z

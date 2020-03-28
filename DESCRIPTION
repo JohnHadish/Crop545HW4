@@ -3,7 +3,7 @@ Type: Package
 Title: GLM GWAS
 Version: 0.1.0
 Author: Debasmita Das and John Hadish
-Maintainer: See Author
+Maintainer: See Author <Joe.Developer@some.domain.net>
 Description: Performs GLM GWAS. DJ is the first initials of the authors
 License: What license is it under?
 Encoding: UTF-8
