@@ -46,6 +46,9 @@ P <- GWASbyGLM(myGenotype, myPhenotype[,2], finalPC)
 # GWAS by Correlation
 P2 <- GWASbyCor(myGenotype[,-1], myPhenotype[,-1])
 ```
+P and P2 contains the p-values corresponding to the two competing methods GWASbyGLM and GWASbyCor for the association tests between phenotype and markers. Markers are tested one at a time with covariates in C included as covariates.
+This package GWASbyGLM also performs PCA and incorporates PCs as cofactors for GWAS.  Also,it automatically excludes the PCs that are in linear dependent to the covariates. 
+
 
 # Manhattan Plots of GWAS by GLM and Cor
 ```{r}
