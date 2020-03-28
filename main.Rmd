@@ -129,7 +129,9 @@ print(paste("Average of GWAS by Cor average: ", mean(scoresTop10[2,]), "SD: ", s
 print(paste("Average of GWAS by GLM average: ", mean(scoresTop10[1,]), "SD: ", sd(scoresTop10[1,]), "Time: ", mean(time30[1,])))
 print(paste("Average of GWAS by BLINK average: ", mean(scoresTop10[3,]), "SD: ", sd(scoresTop10[3,]), "Time: ", mean(time30[3,])))
 ```
+Observations:
 
+We noted the mean times for running this data set using the 3 procedures, GWASbyCor,GWASbyGLM and BLINK.Our procedure is definitely a  good competitor with respect to the other two,but the run time is takes a few more seconds.(We tried to apply the apply function but that didn't quite help)
 ```{r}
 system("R CMD Rd2pdf --output=./Reference_Manual.pdf .")
 ```
