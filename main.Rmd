@@ -22,13 +22,12 @@ myCovariate=read.table(file="http://zzlab.net/GAPIT/data/CROP545_Covariates.txt"
 ```
 
 Load Dependencies
-```{r}
+```{r, message = FALSE, warning = FALSE}
 library(plotly)
 library(ggplot2)
 library(gridExtra)
 library(knitr)
 
-# NOT WORKING YET, CANNOT FIND NAME SPACES FROM REMOTE INSTALL
 library(devtools)
 install_github("JohnHadish/DJ.GLM.GWAS")
 library(DJ.GLM.GWAS)
