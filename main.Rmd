@@ -6,6 +6,12 @@ date: "3/8/2020"
 output: html_document
 ---
 
+Here we implement a new GWAS package "DJ.GLM.GWAS" which performs GLM.
+This package is implemented in r, and contains functions for performing the GWAS and graphing results.
+We hypthesis that this will outperform correlation methods.
+
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
