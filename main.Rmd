@@ -21,7 +21,7 @@ myPhenotype=read.table(file="http://zzlab.net/GAPIT/data/CROP545_Phenotype.txt",
 myCovariate=read.table(file="http://zzlab.net/GAPIT/data/CROP545_Covariates.txt",head=T)
 ```
 
-Load Dependencies
+Load Dependencies and Packages:
 ```{r, message = FALSE, warning = FALSE}
 library(plotly)
 library(ggplot2)
@@ -35,19 +35,22 @@ library(DJ.GLM.GWAS)
 
 Run GWAS using GLM and Correlation on the provided data:
 ```{r, Run_GLM}
-# prcomp is a default principle component analysis
+# prcomp is a default principal component analysis
 allPC <- prcomp(myGenotype[,-1])
-# pcThreshold removes all princople components that account for less than threshold
+# pcThreshold removes all princpal components that account for less than threshold
 threshPC <- pcThreshold(allPC)
-# pcCovariance  determines if covariates are linear with principle components
+# pcCovariance  determines if covariates are linear with principal components
 finalPC <- pcCoVariance(threshPC, myCovariate, .7)
 P <- GWASbyGLM(myGenotype, myPhenotype[,2], finalPC)
 
 # GWAS by Correlation
 P2 <- GWASbyCor(myGenotype[,-1], myPhenotype[,-1])
 ```
+P and P2 contains the p-values corresponding to the two competing methods GWASbyGLM and GWASbyCor for the association tests between phenotype and markers. Markers are tested one at a time with covariates in C included as covariates.
+This package GWASbyGLM also performs PCA and incorporates PCs as cofactors for GWAS.  Also,it automatically excludes the PCs that are in linear dependent to the covariates. 
 
-# Manhatten Plots of GWAS by GLM and Cor
+
+# Manhattan Plots of GWAS by GLM and Cor
 ```{r}
 plotManhatten(P, main = "GWAS by GLM")
 plotManhatten(P2, main = "GWAS by Cor")
@@ -126,8 +129,13 @@ print(paste("Average of GWAS by Cor average: ", mean(scoresTop10[2,]), "SD: ", s
 print(paste("Average of GWAS by GLM average: ", mean(scoresTop10[1,]), "SD: ", sd(scoresTop10[1,]), "Time: ", mean(time30[1,])))
 print(paste("Average of GWAS by BLINK average: ", mean(scoresTop10[3,]), "SD: ", sd(scoresTop10[3,]), "Time: ", mean(time30[3,])))
 ```
+Observations:
 
+<<<<<<< HEAD
 
+=======
+We noted the mean times for running this data set using the 3 procedures, GWASbyCor,GWASbyGLM and BLINK.Our procedure is definitely a  good competitor with respect to the other two,but the run time is takes a few more seconds.(We tried to apply the apply function but that didn't quite help)
+>>>>>>> fc651d42178d955a66aec4f931e40281398c2b5e
 ```{r}
 system("R CMD Rd2pdf --output=./Reference_Manual.pdf .")
 ```
